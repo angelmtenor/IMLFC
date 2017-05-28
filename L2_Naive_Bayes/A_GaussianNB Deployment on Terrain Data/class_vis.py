@@ -4,8 +4,7 @@ import pylab as pl
 import numpy as np
 # import warnings
 # warnings.filterwarnings("ignore")
-
-matplotlib.use('agg')
+# matplotlib.use('agg')
 
 
 def prettyPicture(clf, X_test, y_test):
@@ -44,3 +43,4 @@ def prettyPicture(clf, X_test, y_test):
     plt.ylabel("grade")
 
     plt.savefig("test.png")
+    plt.show()
