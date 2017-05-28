@@ -1,5 +1,3 @@
-
-
 import matplotlib
 import matplotlib.pyplot as plt
 import pylab as pl
