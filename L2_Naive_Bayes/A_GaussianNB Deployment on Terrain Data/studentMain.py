@@ -5,7 +5,7 @@
     boundary found in the lesson video, and make a plot that
     visually shows the decision boundary """
 
-from ClassifyNB import classify
+from classifyNB import classify
 from class_vis import prettyPicture
 from prep_terrain_data import makeTerrainData
 
