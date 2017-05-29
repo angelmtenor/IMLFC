@@ -10,6 +10,7 @@
 # Datasets:  https://github.com/udacity/ud120-projects/tree/master/tools
 
 import sys
+from time import time
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 sys.path.append("../tools/")
@@ -22,7 +23,16 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 # your code goes here
 model = GaussianNB()
+t0 = time()
+
 model.fit(features_train, labels_train)
+t1 = time()
+
 pred = model.predict(features_test)
+t2 = time()
+
 accuracy = accuracy_score(labels_test, pred)
-print("accuracy: {:.3f}".format(accuracy))
+
+print("accuracy: \t\t {:.6f}".format(accuracy))
+print("train time(s): \t {:.6f}".format(t1-t0))
+print("test time(s): \t {:.6f}".format(t2-t2))
