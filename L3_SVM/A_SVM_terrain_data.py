@@ -8,7 +8,7 @@ from class_vis import prettyPicture
 
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
-clf = SVC(kernel="linear")
+clf = SVC(kernel="rbf", C=100000.0)
 t0 = time()
 
 clf.fit(features_train, labels_train)

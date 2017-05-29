@@ -12,7 +12,7 @@ from class_vis import prettyPicture
 
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
-classifiers = KNeighborsClassifier(n_neighbors=10), AdaBoostClassifier(n_estimators=100), RandomForestClassifier(100)
+classifiers = KNeighborsClassifier(n_neighbors=10), AdaBoostClassifier(n_estimators=100), RandomForestClassifier(1000)
 
 for clf in classifiers:
 
