@@ -8,7 +8,7 @@ from class_vis import prettyPicture
 
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
-clf = DecisionTreeClassifier()
+clf = DecisionTreeClassifier(min_samples_split=50)
 t0 = time()
 
 clf.fit(features_train, labels_train)
