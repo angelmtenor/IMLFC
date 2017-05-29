@@ -13,9 +13,7 @@ from time import time
 import numpy as np
 import keras
 from keras.models import Sequential
-from keras.layers.core import Dense, Dropout, Activation
-from keras.optimizers import SGD
-from keras.utils import np_utils
+from keras.layers.core import Dense, Dropout
 
 sys.path.append("../tools/")
 from email_preprocess import preprocess
@@ -27,10 +25,7 @@ features_train, features_test, labels_train, labels_test = preprocess()
 labels_train = keras.utils.to_categorical(labels_train,2)
 labels_test = keras.utils.to_categorical(labels_test,2)
 
-
 features_train = np.array(features_train)
-
-print(features_test.shape)
 
 # Building the model
 model = Sequential()
