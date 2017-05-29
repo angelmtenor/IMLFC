@@ -1,4 +1,4 @@
-from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from time import time
 import sys
@@ -8,7 +8,7 @@ from class_vis import prettyPicture
 
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
-clf = SVC(kernel="linear")
+clf = DecisionTreeClassifier()
 t0 = time()
 
 clf.fit(features_train, labels_train)
