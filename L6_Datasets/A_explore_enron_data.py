@@ -17,7 +17,7 @@
 
 import pickle
 
-enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "br"))
+enron_data = pickle.load(open("final_project_dataset.pkl", "br"))
 
 print("\n FIELDS:")
 print([fields for fields in enron_data["LAY KENNETH L"]])
@@ -32,7 +32,7 @@ print("\nn_people: {}".format(len(enron_data)))
 poi = [people for people in enron_data if enron_data[people]["poi"] == 1]
 print("POIs in data: {}".format(len(poi)))
 
-with open("../final_project/poi_names.txt", 'r') as f:
+with open("poi_names.txt", 'r') as f:
     poi_names = f.readlines()[2:]
 print("Existing POIs: {}".format(len(poi_names)))
 
