@@ -24,8 +24,8 @@ print([fields for fields in enron_data["LAY KENNETH L"]])
 
 print("\n PEOPLE:")
 print([people for people in enron_data])
-
-print("\nn_people: {}".format(len(enron_data)))
+n_people = len(enron_data)
+print("\nn_people: {}".format(n_people))
 
 poi = [people for people in enron_data if enron_data[people]["poi"] == 1]
 print("POIs in data: {}".format(len(poi)))
@@ -57,3 +57,11 @@ print("folks with quantified salary: {}".format(len(qs)))
 em = [i for i in enron_data if "@" in enron_data[i]["email_address"]]
 
 print("folks with email address: {}".format(len(em)))
+
+tp = [people for people in enron_data if float(enron_data[people]["total_payments"]) > 0]
+n_ntp = n_people - len(tp)
+print("folks with NaN total payments: {} ({:.1f}%)".format(n_ntp, n_ntp/n_people*100))
+
+poi_tp = [people for people in poi if float(enron_data[people]["total_payments"]) > 0]
+n_poi_ntp = len(poi) - len(poi_tp)
+print("POI with NaN total payments: {} ({:.1f}%)".format(n_poi_ntp, n_poi_ntp/n_people*100))
