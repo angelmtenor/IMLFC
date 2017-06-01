@@ -1,23 +1,21 @@
-"""
-    Use other classifies to identify emails by their authors
-    
-    authors and labels:
+""" Classification to identify emails by their authors
     Sara has label 0
     Chris has label 1
 """
 
-# Datasets:  https://github.com/udacity/ud120-projects/tree/master/tools
+# original:  https://github.com/udacity/ud120-projects
 
-from sklearn.neighbors import KNeighborsClassifier
+from time import time
+
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-
-import sys
-from time import time
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-sys.path.append("../tools/")
-from email_preprocess import preprocess
+
+from tools.email_preprocess import preprocess
 
 REDUCED = True
 
@@ -26,10 +24,13 @@ REDUCED = True
 features_train, features_test, labels_train, labels_test = preprocess()
 
 if REDUCED:
-    features_train = features_train[:len(features_train) // 100]
-    labels_train = labels_train[:len(labels_train) // 100]
+    features_train = features_train[:len(features_train) // 10]
+    labels_train = labels_train[:len(labels_train) // 10]
 
-classifiers = KNeighborsClassifier(n_neighbors=10), AdaBoostClassifier(n_estimators=100), RandomForestClassifier(100)
+classifiers = (GaussianNB(), SVC(kernel="rbf", C=100000.0), DecisionTreeClassifier(min_samples_split=50),
+               KNeighborsClassifier(n_neighbors=10), AdaBoostClassifier(n_estimators=100), RandomForestClassifier(1000))
+
+names = ["Naive Bayes", "SVM", "Decision Trees", "KNeighbors", "AdaBoost", "randomForest"]
 
 for model in classifiers:
     t0 = time()
@@ -44,7 +45,7 @@ for model in classifiers:
 
     print("\n", model)
     print("accuracy: \t\t {:.6f}".format(accuracy))
-    print("train time(s): \t {:.6f}".format(t1-t0))
-    print("test time(s): \t {:.6f}".format(t2-t2))
+    print("train time(s): \t {:.6f}".format(t1 - t0))
+    print("test time(s): \t {:.6f}".format(t2 - t2))
     # print("Chris emails: \t {}".format(sum(pred)))
     print("number of features: {}".format(len(features_train[0])))

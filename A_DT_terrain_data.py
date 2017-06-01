@@ -1,3 +1,5 @@
+""" Classifying Terrain Data """
+
 from time import time
 
 from sklearn.ensemble import AdaBoostClassifier
