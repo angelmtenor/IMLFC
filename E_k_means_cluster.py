@@ -11,7 +11,7 @@ from sklearn import preprocessing
 from tools.feature_format import featureFormat, targetFeatureSplit
 
 
-def draw(pre, features, poi_, mark_poi=False, name="image.png", f1_name="feature 1", f2_name="feature 2"):
+def draw(pre, features, poi_, mark_poi=False, f1_name="feature 1", f2_name="feature 2"):
     """ some plotting code designed to help you visualize your clusters """
 
     # plot each cluster with a different color--add more colors for
@@ -27,7 +27,6 @@ def draw(pre, features, poi_, mark_poi=False, name="image.png", f1_name="feature
                 plt.scatter(features[ii][0], features[ii][1], color="r", marker="*")
     plt.xlabel(f1_name)
     plt.ylabel(f2_name)
-    plt.savefig(name)
     plt.show()
 
 
@@ -63,7 +62,7 @@ pred = model.predict(finance_features)
 # rename the "name" parameter when you change the number of features
 # so that the figure gets saved to a different file
 try:
-    draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
+    draw(pred, finance_features, poi, mark_poi=False, f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print("no predictions object named pred found, no clusters to plot")
 
@@ -75,4 +74,4 @@ finance_features = preprocessing.MinMaxScaler().fit_transform(finance_features)
 
 model = KMeans(n_clusters=2).fit(finance_features)
 pred = model.predict(finance_features)
-draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
+draw(pred, finance_features, poi, mark_poi=False, f1_name=feature_1, f2_name=feature_2)
