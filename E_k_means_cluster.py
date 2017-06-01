@@ -3,29 +3,27 @@
 """
 
 import pickle
-import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn import preprocessing
 
-sys.path.append("../tools/")
-from feature_format import featureFormat, targetFeatureSplit
+from tools.feature_format import featureFormat, targetFeatureSplit
 
 
-def draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature 1", f2_name="feature 2"):
+def draw(pre, features, poi_, mark_poi=False, name="image.png", f1_name="feature 1", f2_name="feature 2"):
     """ some plotting code designed to help you visualize your clusters """
 
     # plot each cluster with a different color--add more colors for
     # drawing more than five clusters
     colors = ["b", "c", "k", "m", "g"]
-    for ii, pp in enumerate(pred):
-        plt.scatter(features[ii][0], features[ii][1], color=colors[pred[ii]])
+    for ii, pp in enumerate(pre):
+        plt.scatter(features[ii][0], features[ii][1], color=colors[pre[ii]])
 
     # if you like, place red stars over points that are POIs (just for funsies)
     if mark_poi:
-        for ii, pp in enumerate(pred):
-            if poi[ii]:
+        for ii, pp in enumerate(pre):
+            if poi_[ii]:
                 plt.scatter(features[ii][0], features[ii][1], color="r", marker="*")
     plt.xlabel(f1_name)
     plt.ylabel(f2_name)
@@ -34,7 +32,7 @@ def draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
 
 
 # load in the dict of dicts containing all the data on each person in the dataset
-data_dict = pickle.load(open("final_project_dataset.pkl", "rb"))
+data_dict = pickle.load(open("tools/final_project_dataset.pkl", "rb"))
 # there's an outlier--remove it! 
 data_dict.pop("TOTAL", 0)
 
