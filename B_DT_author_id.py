@@ -19,7 +19,7 @@ from sklearn.tree import DecisionTreeClassifier
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 
-REDUCED = False
+REDUCED = True
 
 # features_train and features_test are the features for the training and testing datasets, respectively
 # labels_train and labels_test are the corresponding item labels

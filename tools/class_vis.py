@@ -2,12 +2,9 @@ import matplotlib
 import matplotlib.pyplot as plt
 import pylab as pl
 import numpy as np
-# import warnings
-# warnings.filterwarnings("ignore")
-# matplotlib.use('agg')
 
 
-def prettyPicture(clf, X_test, y_test):
+def prettyPicture(clf, X_test, y_test, title=""):
     x_min = 0.0
     x_max = 1.0
     y_min = 0.0
@@ -41,6 +38,7 @@ def prettyPicture(clf, X_test, y_test):
     plt.legend()
     plt.xlabel("bumpiness")
     plt.ylabel("grade")
+    plt.title(title)
 
-    plt.savefig("test.png")
+    plt.savefig('plot_'+title+".png")
     plt.show()
